@@ -1,0 +1,2 @@
+diego.loja@unl.edu.ec: 1,0,0,0
+yair.lo@unl.edu.ec: 0,1,0,1

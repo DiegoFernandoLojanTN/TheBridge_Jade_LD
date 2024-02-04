@@ -36,7 +36,6 @@ public class AgenteRecomendacion extends Agent {
                 double porcentajeProblemasComunicacion = ((double) respuestasPositivas / totalRespuestas) * 100;
 
             } catch (IOException e) {
-                e.printStackTrace();
             }
         }
     }
