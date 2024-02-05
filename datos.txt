@@ -1,2 +1,19 @@
-diego.loja@unl.edu.ec: 1,0,0,0
-yair.lo@unl.edu.ec: 0,1,0,1
+
+aaaa: 1,1,1,1
+aaa: 1,1,1,1
+1: 1,1,1,1
+aaaaa: 1,1,1,1
+ffff: 1,1,1,1
+ghh: 1,1,1,1
+rfas: 1,1,1,1
+dgg: 1,1,1,1
+ddd: 1,1,1,1
+rfasf: 1,1,1,1
+ddggg: 1,1,1,1
+22415: 1,1,1,1
+asd: 1,1,1,1
+dagag: 1,1,1,1
+dasgasg: 1,1,1,1
+dasgagasg: 1,1,1,1
+gagasg: 1,1,1,1
+ggg: 1,0,1,0

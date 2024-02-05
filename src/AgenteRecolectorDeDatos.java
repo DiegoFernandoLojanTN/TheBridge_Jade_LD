@@ -19,6 +19,7 @@ public class AgenteRecolectorDeDatos extends Agent {
     private class RecoleccionDeDatosBehaviour extends Behaviour {
 
         private boolean encuestaCompletada = false;
+        private String porcentajeProblemasComunicacion;
 
         @Override
         public void action() {
@@ -47,16 +48,23 @@ public class AgenteRecolectorDeDatos extends Agent {
                 try (FileWriter writer = new FileWriter("datos.txt", true)) {
                     writer.write(datos + "\n");
                 } catch (IOException e) {
-                    e.printStackTrace();
                 }
 
                 encuestaCompletada = true;
 
                 ACLMessage msg = new ACLMessage(ACLMessage.REQUEST);
                 msg.setContent("Solicitud de recursos");
-                msg.addReceiver(new AID("AgenteRecursos", AID.ISLOCALNAME));
+                msg.addReceiver(new AID("AgenteRecomendacion", AID.ISLOCALNAME));
                 send(msg);
+                
+                // Recibir
+                ACLMessage msg2 = receive();
+                if (msg2 != null && msg2.getPerformative() == ACLMessage.INFORM) {
+                    porcentajeProblemasComunicacion = msg2.getContent();
 
+                    System.out.println("msg 2: "+ porcentajeProblemasComunicacion);
+                }
+                
                 StringBuilder recursos = new StringBuilder();
                 try (BufferedReader br = new BufferedReader(new FileReader("recursos.txt"))) {
                     String linea;
@@ -65,7 +73,6 @@ public class AgenteRecolectorDeDatos extends Agent {
                         recursos.append("- ").append(linea).append("\n");
                     }
                 } catch (IOException e) {
-                    e.printStackTrace();
                 }
 
                 JOptionPane.showMessageDialog(null, recursos.toString(), "Recursos Disponibles", JOptionPane.INFORMATION_MESSAGE);
@@ -74,7 +81,7 @@ public class AgenteRecolectorDeDatos extends Agent {
 
         @Override
         public boolean done() {
-            return encuestaCompletada;
+            return false;
         }
 
         private boolean usuarioYaEncuestado(String correo) {
@@ -86,7 +93,6 @@ public class AgenteRecolectorDeDatos extends Agent {
                     }
                 }
             } catch (IOException e) {
-                e.printStackTrace();
             }
             return false; // El usuario no ha sido encuestado
         }
