@@ -4,7 +4,6 @@ import jade.core.behaviours.OneShotBehaviour;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import javax.swing.JOptionPane;
 
 public class AgenteRecomendacion extends Agent {
 
