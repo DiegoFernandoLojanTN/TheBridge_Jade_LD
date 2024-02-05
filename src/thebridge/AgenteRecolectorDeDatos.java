@@ -1,3 +1,5 @@
+package thebridge;
+
 
 import jade.core.Agent;
 import jade.core.behaviours.Behaviour;
@@ -75,7 +77,7 @@ public class AgenteRecolectorDeDatos extends Agent {
                 } catch (IOException e) {
                 }
 
-// Imprimir en la consola en lugar de mostrar en un JOptionPane
+                // Imprimir en la consola en lugar de mostrar en un JOptionPane
                 System.out.println(recursos.toString());
 
             }

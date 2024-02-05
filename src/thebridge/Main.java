@@ -1,3 +1,5 @@
+package thebridge;
+
 
 import jade.core.Profile;
 import jade.core.ProfileImpl;
