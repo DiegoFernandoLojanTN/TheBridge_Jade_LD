@@ -1,2 +1,10 @@
-diego.loja@unl.edu.ec: 1,0,0,0
-yair.lo@unl.edu.ec: 0,1,0,1
+diego: 1,1,1,1
+yair: 1,1,1,1
+carlos: 0,0,1,1
+olo: 1,0,0,0
+chau: 0,0,0,0
+luis: 1,1,1,0
+iol: 1,0,0,0
+ty: 1,1,0,0
+loja: 1,1,0,0
+chamba: 1,1,0,0
