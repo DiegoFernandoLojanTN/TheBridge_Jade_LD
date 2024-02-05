@@ -3,17 +3,17 @@ package thebridge;
 public class Consulta {
 
     /**
-     * @return the id
+     * @return the porcentaje
      */
-    public int getId() {
-        return id;
+    public double getPorcentaje() {
+        return porcentaje;
     }
 
     /**
-     * @param id the id to set
+     * @param porcentaje the porcentaje to set
      */
-    public void setId(int id) {
-        this.id = id;
+    public void setPorcentaje(double porcentaje) {
+        this.porcentaje = porcentaje;
     }
 
     /**
@@ -31,34 +31,35 @@ public class Consulta {
     }
 
     /**
-     * @return the porcentaje
+     * @return the mensaje
      */
-    public String getPorcentaje() {
-        return porcentaje;
+    public String getMensaje() {
+        return mensaje;
     }
 
     /**
-     * @param porcentaje the porcentaje to set
+     * @param porcentaje the mensaje to set
      */
-    public void setPorcentaje(String porcentaje) {
-        this.porcentaje = porcentaje;
+    public void setMensaje(String porcentaje) {
+        this.mensaje = porcentaje;
     }
 
     /**
      * @return the resultado
      */
-    public String getResultado() {
+    public StringBuilder getResultado() {
         return resultado;
     }
 
     /**
      * @param resultado the resultado to set
      */
-    public void setResultado(String resultado) {
+    public void setResultado(StringBuilder resultado) {
         this.resultado = resultado;
     }
-    private int id;
+
     private String correo;
-    private String porcentaje;
-    private String resultado;
+    private double porcentaje;
+    private String mensaje;
+    private StringBuilder resultado;
 }

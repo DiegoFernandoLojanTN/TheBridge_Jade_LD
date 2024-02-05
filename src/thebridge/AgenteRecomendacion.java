@@ -1,6 +1,5 @@
 package thebridge;
 
-
 import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.Behaviour;
@@ -8,6 +7,7 @@ import jade.lang.acl.ACLMessage;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import static thebridge.Main.consulta;
 
 public class AgenteRecomendacion extends Agent {
 
@@ -26,9 +26,9 @@ public class AgenteRecomendacion extends Agent {
                 int respuestasPositivas = 0;
                 double porcentajeProblemasComunicacion = 0;
 
-                // Recibir
+                // Recibir solicitud de datos
                 ACLMessage msg = receive();
-                if (msg != null && msg.getContent().equals("Solicitud de recursos")) {
+                if (msg != null && msg.getContent().equals("Solicitud de datos")) {
                     // Algoritmo
                     while ((line = br.readLine()) != null) {
                         String[] parts = line.split(":");
@@ -49,16 +49,18 @@ public class AgenteRecomendacion extends Agent {
                     // Crear el mensaje descriptivo
                     String mensajeDescriptivo = String.format("Hemos detectado un %.2f%% de problemas de comunicación. Lamentamos saber eso, ahora te ayudamos...", porcentajeProblemasComunicacion);
 
-                    System.out.println(mensajeDescriptivo);
-
-                    // Enviar mensaje descriptivo
-                    ACLMessage msg2 = new ACLMessage(ACLMessage.INFORM);
-                    msg2.setContent(mensajeDescriptivo);
-                    msg2.addReceiver(new AID("AgenteRecolectorDeDatos", AID.ISLOCALNAME));
-                    send(msg2);
+                    // Guardar datos
+                    consulta.setPorcentaje(porcentajeProblemasComunicacion);
+                    consulta.setMensaje(mensajeDescriptivo);
                 }
             } catch (IOException e) {
             }
+
+            // Enviar solicitud de recursos
+            ACLMessage msg2 = new ACLMessage(ACLMessage.REQUEST);
+            msg2.setContent("Solicitud de recursos");
+            msg2.addReceiver(new AID("AgenteRecolector", AID.ISLOCALNAME));
+            send(msg2);
         }
 
         @Override

@@ -1,6 +1,5 @@
 package thebridge;
 
-
 import jade.core.Agent;
 import jade.core.behaviours.Behaviour;
 import jade.lang.acl.ACLMessage;
@@ -10,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import static thebridge.Main.consulta;
 
 public class AgenteRecolectorDeDatos extends Agent {
 
@@ -21,7 +21,6 @@ public class AgenteRecolectorDeDatos extends Agent {
     private class RecoleccionDeDatosBehaviour extends Behaviour {
 
         private boolean encuestaCompletada = false;
-        private String porcentajeProblemasComunicacion;
 
         @Override
         public void action() {
@@ -32,6 +31,7 @@ public class AgenteRecolectorDeDatos extends Agent {
                     return;
                 }
 
+                consulta.setCorreo(correoInstitucional);
                 String datos = correoInstitucional + ": ";
                 String[] preguntas = {
                     "¿Tienes problemas para comprender las explicaciones en clase?",
@@ -54,38 +54,38 @@ public class AgenteRecolectorDeDatos extends Agent {
 
                 encuestaCompletada = true;
 
+                // Enviar solicitud de datos
                 ACLMessage msg = new ACLMessage(ACLMessage.REQUEST);
-                msg.setContent("Solicitud de recursos");
+                msg.setContent("Solicitud de datos");
                 msg.addReceiver(new AID("AgenteRecomendacion", AID.ISLOCALNAME));
                 send(msg);
+            }
 
-                // Recibir
-                ACLMessage msg2 = receive();
-                if (msg2 != null && msg2.getPerformative() == ACLMessage.INFORM) {
-                    porcentajeProblemasComunicacion = msg2.getContent();
-
-                    System.out.println("msg 2: " + porcentajeProblemasComunicacion);
-                }
-
+            // Recibir solicitud de recursos
+            ACLMessage msg2 = receive();
+            if (msg2 != null && msg2.getContent().equals("Solicitud de recursos")) {
                 StringBuilder recursos = new StringBuilder();
                 try (BufferedReader br = new BufferedReader(new FileReader("recursos.txt"))) {
                     String linea;
-                    recursos.append("Contamos con los siguientes recursos para ti, ").append(correoInstitucional).append(", espero los tengas en consideración:\n");
+                    recursos.append("Contamos con los siguientes recursos para ti, ").append(consulta.getCorreo()).append(", espero los tengas en consideración:\n");
                     while ((linea = br.readLine()) != null) {
                         recursos.append("- ").append(linea).append("\n");
                     }
+                    consulta.setResultado(recursos);
                 } catch (IOException e) {
                 }
 
-                // Imprimir en la consola en lugar de mostrar en un JOptionPane
-                System.out.println(recursos.toString());
-
+                // Imprimir resultados
+                if (consulta.getMensaje() != null) {
+                    System.out.println(consulta.getMensaje());
+                    System.out.println(consulta.getResultado().toString());
+                }
             }
         }
 
         @Override
         public boolean done() {
-            return false;
+            return consulta.getMensaje() != null;
         }
 
         private boolean usuarioYaEncuestado(String correo) {
