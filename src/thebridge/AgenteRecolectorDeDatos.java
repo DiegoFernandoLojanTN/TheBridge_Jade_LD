@@ -65,12 +65,26 @@ public class AgenteRecolectorDeDatos extends Agent {
             ACLMessage msg2 = receive();
             if (msg2 != null && msg2.getContent().equals("Solicitud de recursos")) {
                 StringBuilder recursos = new StringBuilder();
+                String linea;
+                if (consulta.getMensaje() == null) {
+                    return;
+                }
                 try (BufferedReader br = new BufferedReader(new FileReader("recursos.txt"))) {
-                    String linea;
                     recursos.append("Contamos con los siguientes recursos para ti, ").append(consulta.getCorreo()).append(", espero los tengas en consideración:\n");
-                    while ((linea = br.readLine()) != null) {
+                    int cr = 0; // Cantidad de recomendaciones
+                    double porcentaje = consulta.getPorcentaje();
+
+                    cr = (porcentaje == 0) ? 1
+                            : (porcentaje <= 25) ? 2
+                                    : (porcentaje <= 50) ? 6
+                                            : (porcentaje <= 75) ? 9
+                                                    : (porcentaje <= 100) ? -2 : cr;
+
+                    while ((linea = br.readLine()) != null && cr != 0) {
                         recursos.append("- ").append(linea).append("\n");
+                        cr = (cr == -2) ? cr : cr--;
                     }
+
                     consulta.setResultado(recursos);
                 } catch (IOException e) {
                 }
@@ -79,6 +93,9 @@ public class AgenteRecolectorDeDatos extends Agent {
                 if (consulta.getMensaje() != null) {
                     System.out.println(consulta.getMensaje());
                     System.out.println(consulta.getResultado().toString());
+
+                    // Mostrar mensaje en una ventana emergente
+                    JOptionPane.showMessageDialog(null, consulta.getMensaje() + "\n" + consulta.getResultado().toString(), "Resultados", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         }

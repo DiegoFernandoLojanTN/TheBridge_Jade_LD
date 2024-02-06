@@ -19,3 +19,14 @@ aggg: 1,1,1,1
 dasdgg: 1,1,1,1
 adag: 1,1,1,1
 asdgag: 1,1,1,1
+hhj: 1,1,1,1
+dasdasf: 1,1,1,0
+dassaf: 1,1,1,0
+ddag: 1,0,1,0
+dasd: 1,1,0,1
+gasgasga: 1,0,0,0
+gggggg: 1,1,0,0
+dadsd: 1,1,0,0
+dasdasd: 0,0,0,0
+dadasdsad: 1,1,1,1
+dads: 1,1,0,1

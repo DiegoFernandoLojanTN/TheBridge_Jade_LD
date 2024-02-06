@@ -7,6 +7,7 @@ import jade.lang.acl.ACLMessage;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import static thebridge.Main.consulta;
 
 public class AgenteRecomendacion extends Agent {
@@ -24,34 +25,38 @@ public class AgenteRecomendacion extends Agent {
                 String line;
                 int totalRespuestas = 0;
                 int respuestasPositivas = 0;
-                double porcentajeProblemasComunicacion = 0;
+                double ppc;
 
                 // Recibir solicitud de datos
                 ACLMessage msg = receive();
                 if (msg != null && msg.getContent().equals("Solicitud de datos")) {
                     // Algoritmo
+                    String ultimaLinea = null;
                     while ((line = br.readLine()) != null) {
-                        String[] parts = line.split(":");
-                        if (parts.length == 2) {
-                            totalRespuestas++;
-                            String[] respuestas = parts[1].split(",");
-                            for (String respuesta : respuestas) {
-                                int valor = Integer.parseInt(respuesta.trim());
-                                if (valor == 1) {
-                                    respuestasPositivas++;
-                                }
-                            }
-                        }
+                        ultimaLinea = line; // Guardar la última línea
                     }
 
-                    porcentajeProblemasComunicacion = ((double) respuestasPositivas / totalRespuestas) * 100;
+                    if (ultimaLinea != null) {
+                        String[] valores = ultimaLinea.split(":")[1].split(",");
+                        System.out.println("Respuestas: " + Arrays.toString(valores));
+                        consulta.setRespuestas(valores);
+                        totalRespuestas = valores.length;
 
-                    // Crear el mensaje descriptivo
-                    String mensajeDescriptivo = String.format("Hemos detectado un %.2f%% de problemas de comunicación. Lamentamos saber eso, ahora te ayudamos...", porcentajeProblemasComunicacion);
+                        for (String valor : valores) {
+                            if (valor.trim().equals("1")) {
+                                respuestasPositivas++;
+                            }
+                        }
 
-                    // Guardar datos
-                    consulta.setPorcentaje(porcentajeProblemasComunicacion);
-                    consulta.setMensaje(mensajeDescriptivo);
+                        ppc = ((double) respuestasPositivas / totalRespuestas) * 100; // Porcentaje de problemas de comunicación
+
+                        // Crear el mensaje descriptivo
+                        String mensajeDescriptivo = String.format((ppc == 0) ? "Hemos detectado un %.2f%% de problemas de comunicación. Todo parece estar correcto..." : "Hemos detectado un %.2f%% de problemas de comunicación. Lamentamos saber eso, ahora te ayudamos...", ppc);
+
+                        // Guardar datos
+                        consulta.setPorcentaje(ppc);
+                        consulta.setMensaje(mensajeDescriptivo);
+                    }
                 }
             } catch (IOException e) {
             }
@@ -65,7 +70,7 @@ public class AgenteRecomendacion extends Agent {
 
         @Override
         public boolean done() {
-            return false;
+            return consulta.getMensaje() != null;
         }
     }
 }

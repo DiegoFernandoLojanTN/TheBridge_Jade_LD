@@ -3,6 +3,20 @@ package thebridge;
 public class Consulta {
 
     /**
+     * @return the respuestas
+     */
+    public String[] getRespuestas() {
+        return respuestas;
+    }
+
+    /**
+     * @param respuestas the respuestas to set
+     */
+    public void setRespuestas(String[] respuestas) {
+        this.respuestas = respuestas;
+    }
+
+    /**
      * @return the porcentaje
      */
     public double getPorcentaje() {
@@ -61,5 +75,6 @@ public class Consulta {
     private String correo;
     private double porcentaje;
     private String mensaje;
+    private String[] respuestas;
     private StringBuilder resultado;
 }
