@@ -31,14 +31,18 @@ public class AgenteRecolectorDeDatos extends Agent {
                     return;
                 }
 
-                consulta.setCorreo(correoInstitucional);
-                String datos = correoInstitucional + ": ";
+                String datos = correoInstitucional + ":";
                 String[] preguntas = {
                     "¿Tienes problemas para comprender las explicaciones en clase?",
                     "¿Te cuesta expresarte oralmente frente al grupo?",
                     "¿Sientes que tu pronunciación no es clara?",
                     "¿Te confundes con facilidad al hablar en público?"
                 };
+
+                // Guardar datos
+                consulta.setPreguntas(preguntas);
+                consulta.setCorreo(correoInstitucional);
+
                 for (int i = 0; i < preguntas.length; i++) {
                     int respuesta = JOptionPane.showConfirmDialog(null, preguntas[i], "Encuesta", JOptionPane.YES_NO_OPTION);
                     datos += (respuesta == JOptionPane.YES_OPTION) ? "1" : "0"; // Guardar 1 si es "Sí" y 0 si es "No"
@@ -82,20 +86,11 @@ public class AgenteRecolectorDeDatos extends Agent {
 
                     while ((linea = br.readLine()) != null && cr != 0) {
                         recursos.append("- ").append(linea).append("\n");
-                        cr = (cr == -2) ? cr : cr--;
+                        cr = (cr == -2) ? cr : cr - 1;
                     }
 
                     consulta.setResultado(recursos);
                 } catch (IOException e) {
-                }
-
-                // Imprimir resultados
-                if (consulta.getMensaje() != null) {
-                    System.out.println(consulta.getMensaje());
-                    System.out.println(consulta.getResultado().toString());
-
-                    // Mostrar mensaje en una ventana emergente
-                    JOptionPane.showMessageDialog(null, consulta.getMensaje() + "\n" + consulta.getResultado().toString(), "Resultados", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         }

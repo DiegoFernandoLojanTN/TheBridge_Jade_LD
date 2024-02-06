@@ -3,17 +3,17 @@ package thebridge;
 public class Consulta {
 
     /**
-     * @return the respuestas
+     * @return the correo
      */
-    public String[] getRespuestas() {
-        return respuestas;
+    public String getCorreo() {
+        return correo;
     }
 
     /**
-     * @param respuestas the respuestas to set
+     * @param correo the correo to set
      */
-    public void setRespuestas(String[] respuestas) {
-        this.respuestas = respuestas;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     /**
@@ -31,17 +31,31 @@ public class Consulta {
     }
 
     /**
-     * @return the correo
+     * @return the preguntas
      */
-    public String getCorreo() {
-        return correo;
+    public String[] getPreguntas() {
+        return preguntas;
     }
 
     /**
-     * @param correo the correo to set
+     * @param preguntas the preguntas to set
      */
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setPreguntas(String[] preguntas) {
+        this.preguntas = preguntas;
+    }
+
+    /**
+     * @return the respuestas
+     */
+    public String[] getRespuestas() {
+        return respuestas;
+    }
+
+    /**
+     * @param respuestas the respuestas to set
+     */
+    public void setRespuestas(String[] respuestas) {
+        this.respuestas = respuestas;
     }
 
     /**
@@ -52,10 +66,10 @@ public class Consulta {
     }
 
     /**
-     * @param porcentaje the mensaje to set
+     * @param mensaje the mensaje to set
      */
-    public void setMensaje(String porcentaje) {
-        this.mensaje = porcentaje;
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
     }
 
     /**
@@ -71,10 +85,10 @@ public class Consulta {
     public void setResultado(StringBuilder resultado) {
         this.resultado = resultado;
     }
-
     private String correo;
     private double porcentaje;
-    private String mensaje;
+    private String[] preguntas;
     private String[] respuestas;
+    private String mensaje;
     private StringBuilder resultado;
 }

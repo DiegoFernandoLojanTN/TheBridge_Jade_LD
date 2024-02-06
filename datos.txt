@@ -1,32 +1,10 @@
-diego: 1,1,1,1
-yair: 1,1,1,1
-carlos: 0,0,1,1
-olo: 1,0,0,0
-chau: 0,0,0,0
-luis: 1,1,1,0
-iol: 1,0,0,0
-ty: 1,1,0,0
-loja: 1,1,0,0
-chamba: 1,1,0,0
-aaa: 1,1,1,1
-ggg: 1,1,1,1
-ddd: 1,1,1,1
-adasdasd: 1,1,1,1
-null: 0,0,0,0
-asad: 1,1,1,1
-asd: 1,1,1,1
-aggg: 1,1,1,1
-dasdgg: 1,1,1,1
-adag: 1,1,1,1
-asdgag: 1,1,1,1
-hhj: 1,1,1,1
-dasdasf: 1,1,1,0
-dassaf: 1,1,1,0
-ddag: 1,0,1,0
-dasd: 1,1,0,1
-gasgasga: 1,0,0,0
-gggggg: 1,1,0,0
-dadsd: 1,1,0,0
-dasdasd: 0,0,0,0
-dadasdsad: 1,1,1,1
-dads: 1,1,0,1
+diego:1,1,1,1
+yair:1,1,1,1
+carlos:0,0,1,1
+olo:1,0,0,0
+chau:0,0,0,0
+luis:1,1,1,0
+iol:1,0,0,0
+ty:1,1,0,0
+loja:1,1,0,0
+chamba:1,1,0,0
