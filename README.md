@@ -4,11 +4,6 @@
 ## MODELO CONCEPTUAL DEL SISTEMA INTELIGENTE "THE BRIDGE"
 [![Modelo-conceptual-Darwin-Center-1-drawio.png](https://i.postimg.cc/nrX90mJk/Modelo-conceptual-Darwin-Center-1-drawio.png)](https://postimg.cc/kRd55BD6)
 
-### `Contenido`
-[![imagen-2023-09-23-183255794.png](https://i.postimg.cc/hvJ13ddj/imagen-2023-09-23-183255794.png)](https://postimg.cc/zHrhy3pZ)
-
-[![imagen-2023-09-24-133229767.png](https://i.postimg.cc/HLd7RtpZ/imagen-2023-09-24-133229767.png)](https://postimg.cc/RWpFnKJK)
-
-### `Live Demo`
-
-Enlace: 
+## ESTRUCTURA DEL PROYECTO EN JAVA-JADE CON EL IDE NEATBEANS
+[![imagen-2024-02-07-102009722.png](https://i.postimg.cc/d0XhD1dZ/imagen-2024-02-07-102009722.png)](https://postimg.cc/p9fW6PsP)
+Nota: Se usa la libreria JADE: https://jade.tilab.com
