@@ -8,7 +8,15 @@ _El objetivo principal de nuestro sistema inteligente, "The Bridge/El Puente", e
 [![imagen-2024-02-07-102009722.png](https://i.postimg.cc/d0XhD1dZ/imagen-2024-02-07-102009722.png)](https://postimg.cc/p9fW6PsP)
 
 # REQUERIMIENTOS 📢
-1. **Ubicación de archivos TXT:**
-  1. Asegúrate de que los archivos TXT estén ubicados en la carpeta raíz fuera del programa. Esto garantizará que puedan ser accedidos fácilmente por tu aplicación Java.
+1. **Ubicación de archivos TXT**:
+  * Asegúrate de que los archivos TXT estén ubicados en la carpeta raíz fuera del programa, esto garantizará que puedan ser accedidos fácilmente por la aplicación.
+  [![imagen-2024-02-07-135514601.png](https://i.postimg.cc/vT0S4s44/imagen-2024-02-07-135514601.png)](https://postimg.cc/FkJx6wgv)
+
+2. **Configuración en NetBeans**:
++ Abre el proyecto "The Bridge" en NetBeans 8.2.
++ Verifica que todas las dependencias de JADE estén correctamente configuradas en el proyecto. Esto incluye las bibliotecas JADE necesarias para el desarrollo de agentes.
+
+3. **Implementación de agentes JADE**:
++ Asegúrate de que los agentes en JADE estén configurados y funcionando correctamente. Verifica que las rutas de comunicación entre los agentes estén configuradas correctamente para que puedan intercambiar mensajes.
 
 
