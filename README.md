@@ -35,7 +35,7 @@ _El objetivo principal de nuestro sistema inteligente, "The Bridge/El Puente", e
 [![imagen-2024-02-07-143933049.png](https://i.postimg.cc/hvrCQq3k/imagen-2024-02-07-143933049.png)](https://postimg.cc/YLvNTT7R)
    
 # ENLACES A DOCUMENTACION:
-### REPORTE TECNICÓ:
+### REPORTE TECNICÓ: https://drive.google.com/file/d/1gg2jKyYi2nlmnCpnkTFrN3-K3ETw8QlY/view?usp=sharing
 ### PRESENTACIÓN:
 
 DESARROLLO REALIZADO POR [DIEGOFERNANDOLOJAN](https://diegofernandolojantn.github.io/PortfolioLD/)
