@@ -54,7 +54,7 @@ Se toma la decisión basada en la mayoría de clases de los k vecinos más cerca
 
 # ENLACES A DOCUMENTACION:
 ### [Reporte Tecnicó]()
-### [Presentación]()
+### [Presentación](https://acortar.link/He2SjP)
 
 DESARROLLO REALIZADO POR [DIEGOFERNANDOLOJAN](https://diegofernandolojantn.github.io/PortfolioLD/)
 
