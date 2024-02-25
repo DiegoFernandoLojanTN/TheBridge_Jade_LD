@@ -73,30 +73,10 @@ public class AgenteRecolectorDeDatos extends Agent {
                 }
                 try (BufferedReader br = new BufferedReader(new FileReader("recursos.txt"))) {
                     recursos.append("Contamos con los siguientes recursos para ti, ").append(consulta.getCorreo()).append(", espero los tengas en consideración:\n");
-                    int cr = 0; // Cantidad de recomendaciones
                     double porcentaje = consulta.getPorcentaje();
 
-                    cr = (porcentaje == 0) ? 1
-                            : (porcentaje <= 5) ? 3
-                                    : (porcentaje <= 10) ? 4
-                                            : (porcentaje <= 15) ? 5
-                                                    : (porcentaje <= 20) ? 7
-                                                            : (porcentaje <= 25) ? 8
-                                                                    : (porcentaje <= 30) ? 10
-                                                                            : (porcentaje <= 35) ? 11
-                                                                                    : (porcentaje <= 40) ? 12
-                                                                                            : (porcentaje <= 45) ? 13
-                                                                                                    : (porcentaje <= 50) ? 15
-                                                                                                            : (porcentaje <= 55) ? 16
-                                                                                                                    : (porcentaje <= 60) ? 17
-                                                                                                                            : (porcentaje <= 65) ? 18
-                                                                                                                                    : (porcentaje <= 70) ? 20
-                                                                                                                                            : (porcentaje <= 75) ? 21
-                                                                                                                                                    : (porcentaje <= 80) ? 22
-                                                                                                                                                            : (porcentaje <= 85) ? 23
-                                                                                                                                                                    : (porcentaje <= 90) ? 25
-                                                                                                                                                                            : (porcentaje <= 95) ? 26
-                                                                                                                                                                                    : (porcentaje <= 100) ? -2 : cr;
+                    // Predecir la cantidad de recursos necesarios utilizando KNN
+                    int cr = predecirRecursos(porcentaje);
 
                     while ((linea = br.readLine()) != null && cr != 0) {
                         recursos.append("- ").append(linea).append("\n");
@@ -125,6 +105,40 @@ public class AgenteRecolectorDeDatos extends Agent {
             } catch (IOException e) {
             }
             return false; // El usuario no ha sido encuestado
+        }
+
+        // Función para predecir la cantidad de recursos utilizando KNN
+        private int predecirRecursos(double porcentaje) {
+            double[] porcentajesConocidos = {0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100};
+            int[] recursosCorrespondientes = {1, 3, 4, 5, 7, 8, 10, 11, 12, 13, 15, 16, 17, 18, 20, 21, 22, 23, 25, 26, -2};
+
+            int k = 3; // Número de vecinos más cercanos a considerar
+            int[] distancias = new int[porcentajesConocidos.length];
+            for (int i = 0; i < porcentajesConocidos.length; i++) {
+                distancias[i] = Math.abs((int) porcentaje - (int) porcentajesConocidos[i]);
+            }
+
+            // Encontrar los k vecinos más cercanos
+            int[] recursosVecinos = new int[k];
+            for (int i = 0; i < k; i++) {
+                int minDistancia = Integer.MAX_VALUE;
+                int minIndex = -1;
+                for (int j = 0; j < distancias.length; j++) {
+                    if (distancias[j] < minDistancia) {
+                        minDistancia = distancias[j];
+                        minIndex = j;
+                    }
+                }
+                recursosVecinos[i] = recursosCorrespondientes[minIndex];
+                distancias[minIndex] = Integer.MAX_VALUE; // Marcar como visitado
+            }
+
+            // Tomar la decisión basada en la mayoría de clases de los vecinos más cercanos
+            int sum = 0;
+            for (int i : recursosVecinos) {
+                sum += i;
+            }
+            return sum / k; // Devolver el promedio de recursos de los vecinos más cercanos
         }
     }
 }

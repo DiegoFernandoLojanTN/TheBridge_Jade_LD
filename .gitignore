@@ -6,3 +6,5 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+APDescription.txt
+MTPs-Main-Container.txt
