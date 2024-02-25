@@ -53,7 +53,7 @@ Se eligen los k vecinos más cercanos. En este caso, se selecciona un valor de k
 Se toma la decisión basada en la mayoría de clases de los k vecinos más cercanos. En este caso, las clases son las cantidades de recursos correspondientes a los porcentajes conocidos. Se suma la cantidad de recursos de los vecinos más cercanos y se devuelve el promedio como la predicción.
 
 # ENLACES A DOCUMENTACION:
-### [Reporte Tecnicó]()
+### [Reporte Tecnicó](https://acortar.link/5qV1R1)
 ### [Presentación](https://acortar.link/He2SjP)
 
 DESARROLLO REALIZADO POR [DIEGOFERNANDOLOJAN](https://diegofernandolojantn.github.io/PortfolioLD/)
