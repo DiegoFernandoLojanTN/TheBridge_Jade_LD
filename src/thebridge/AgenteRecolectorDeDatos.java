@@ -107,38 +107,55 @@ public class AgenteRecolectorDeDatos extends Agent {
             return false; // El usuario no ha sido encuestado
         }
 
-        // Función para predecir la cantidad de recursos utilizando KNN
+        /*En este ejemplo, supongamos que queremos predecir la cantidad de recursos necesarios basados en un porcentaje dado. 
+        Por ejemplo, si tenemos un porcentaje de completitud de tarea del 70%, queremos predecir cuántos recursos se necesitarán.*/
+        
+        // Función para predecir la cantidad de recursos utilizando el algoritmo de los k vecinos más cercanos (KNN)
         private int predecirRecursos(double porcentaje) {
+            // Definición de los porcentajes conocidos y los recursos correspondientes
             double[] porcentajesConocidos = {0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100};
             int[] recursosCorrespondientes = {1, 3, 4, 5, 7, 8, 10, 11, 12, 13, 15, 16, 17, 18, 20, 21, 22, 23, 25, 26, -2};
 
             int k = 3; // Número de vecinos más cercanos a considerar
+
+            // Calcular las distancias entre el porcentaje dado y los porcentajes conocidos
             int[] distancias = new int[porcentajesConocidos.length];
             for (int i = 0; i < porcentajesConocidos.length; i++) {
+                // Calcula la diferencia absoluta entre el porcentaje dado y el porcentaje conocido actual
                 distancias[i] = Math.abs((int) porcentaje - (int) porcentajesConocidos[i]);
             }
 
             // Encontrar los k vecinos más cercanos
             int[] recursosVecinos = new int[k];
+            // Itera k veces para encontrar los k vecinos más cercanos
             for (int i = 0; i < k; i++) {
+                // Inicializa la distancia mínima como el valor máximo entero posible
                 int minDistancia = Integer.MAX_VALUE;
+                // Inicializa el índice del vecino más cercano como -1
                 int minIndex = -1;
+
+                // Itera sobre todas las distancias almacenadas en el arreglo
                 for (int j = 0; j < distancias.length; j++) {
+                    // Comprueba si la distancia actual es menor que la distancia mínima encontrada hasta ahora
                     if (distancias[j] < minDistancia) {
+                        // Si es así, actualiza la distancia mínima y el índice correspondiente
                         minDistancia = distancias[j];
                         minIndex = j;
                     }
                 }
+                // Almacenar el recurso correspondiente al vecino más cercano en el arreglo de recursos vecinos
                 recursosVecinos[i] = recursosCorrespondientes[minIndex];
-                distancias[minIndex] = Integer.MAX_VALUE; // Marcar como visitado
+                distancias[minIndex] = Integer.MAX_VALUE; // Marcar como visitado para no ser seleccionado nuevamente
             }
 
-            // Tomar la decisión basada en la mayoría de clases de los vecinos más cercanos
+            // Calcular la decisión basada en la mayoría de clases de los vecinos más cercanos
             int sum = 0;
+            // Sumar los recursos de los vecinos más cercanos
             for (int i : recursosVecinos) {
+                // Agrega el recurso del vecino actual a la suma total
                 sum += i;
             }
-            return sum / k; // Devolver el promedio de recursos de los vecinos más cercanos
+            return sum / k; // Devolver el promedio de recursos de los vecinos más cercanos como la predicción final
         }
     }
 }
