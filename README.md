@@ -33,10 +33,28 @@ _El objetivo principal de nuestro sistema inteligente, "The Bridge/El Puente", e
 [![imagen-2024-02-07-143849314.png](https://i.postimg.cc/bvW4q8KL/imagen-2024-02-07-143849314.png)](https://postimg.cc/Ny8d4hGr)
 5.  Al concluir todo el proceso, el estudiante/usuario no tiene acceso directo al documento en sí, sino que puede visualizar únicamente las recomendaciones de forma digital. Como parte de este proceso, se crea una carpeta llamada _resultados_ en la raíz del proyecto. Dentro de esta carpeta, se genera un documento para cada usuario, el cual contiene sus respuestas y las recomendaciones correspondientes para un uso futuro.
 [![imagen-2024-02-07-143933049.png](https://i.postimg.cc/hvrCQq3k/imagen-2024-02-07-143933049.png)](https://postimg.cc/YLvNTT7R)
-   
+
+# TÉCNIVA DE LOS K VECINOS MÁS CERCANOS (KNN) PARA PREDICCIÓN DE RECURSOS 🧑‍💻
+El algoritmo implementa la técnica de los k Vecinos Más Cercanos (KNN), una técnica popular en el campo de la inteligencia artificial y el aprendizaje automático. Este método se utiliza para clasificación y regresión, siendo en este caso una regresión, ya que se está prediciendo un valor numérico (la cantidad de recursos).
+
+1. **Definición de Datos de Entrenamiento:**:
+En este código, se tienen dos arreglos: porcentajesConocidos y recursosCorrespondientes. El primero contiene los porcentajes conocidos y el segundo contiene la cantidad de recursos correspondientes a esos porcentajes.
+
+2. **Definición de la Función de Predicción (predecirRecursos):**
+Recibe como parámetro porcentaje, que es el porcentaje para el cual queremos predecir la cantidad de recursos.
+
+3. **Cálculo de Distancias:**
+Se calculan las distancias entre el porcentaje dado y todos los porcentajes conocidos. Esto se hace para encontrar los "vecinos" más cercanos al porcentaje dado.
+
+4. **Selección de Vecinos Más Cercanos:**
+Se eligen los k vecinos más cercanos. En este caso, se selecciona un valor de k = 3. Se hace esto encontrando los valores mínimos de las distancias calculadas anteriormente.
+
+5. **Decisión Basada en la Mayoría de Clases:**
+Se toma la decisión basada en la mayoría de clases de los k vecinos más cercanos. En este caso, las clases son las cantidades de recursos correspondientes a los porcentajes conocidos. Se suma la cantidad de recursos de los vecinos más cercanos y se devuelve el promedio como la predicción.
+
 # ENLACES A DOCUMENTACION:
-### [Reporte Tecnicó](https://acortar.link/jZALPT)
-### [Presentación]()
+### [Reporte Tecnicó](https://acortar.link/5qV1R1)
+### [Presentación](https://acortar.link/He2SjP)
 
 DESARROLLO REALIZADO POR [DIEGOFERNANDOLOJAN](https://diegofernandolojantn.github.io/PortfolioLD/)
 
